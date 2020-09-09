@@ -6,7 +6,7 @@ class Register extends React.Component{
         return(
             <div class="container my-3">
                 <div class="d-flex justify-content-center">
-                    <div class="card" style={{padding:'2px'}}>
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style={{padding:'2px'}}>
                         <div class="card-header">
                             <h3>Register</h3>
                         </div>

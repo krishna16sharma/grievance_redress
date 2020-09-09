@@ -5,7 +5,7 @@ class Login extends React.Component{
         return(
                     <div class="container" style={{marginTop:'20vh'}}>
                     	<div class="d-flex justify-content-center h-100">
-                    		<div class="card">
+                    		<div class="card shadow p-3 mb-5 bg-white rounded">
                     			<div class="card-header">
                     				<h3>Login</h3>
                     			</div>

@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import Navigation from './components/Navigation/Navigation';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Grievance from './components/grievance_form/grievance_form';
+
+import './App.css';
 
 const initialState = {
-    current: 'home'
+    current: 'regis'
 }
 const routeChange = (current) =>{
     this.setState({current: current})
@@ -19,32 +22,21 @@ class App extends React.Component{
       const {current} = this.state;
       return (
           <div>
+            <Navigation current={{current}}/>
           {
               (current === 'home')
                ?
-                    <div>
-                        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                                  <a className="navbar-brand" href="#">Grievance Redressal</a>
-                                      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul className="navbar-nav ml-auto ">
-                                            <li className="nav-item">
-                                                <a className="nav-link" href="#" >Login</a>
-                                            </li>
-                                            <li className="nav-item">
-                                                <a className="nav-link" href="#">Register</a>
-                                            </li>
-                                        </ul>
-                                        </div>
-                        </nav>
-                        <div className='home' style={{fontFamily:'Arial'}}>
-                            <h1>Welcome!</h1>
-                        </div>
-                    </div>
+                   <div className='home' style={{fontFamily:'Arial'}}>
+                       <h1>Welcome!</h1>
+                   </div>
                 : (current === 'login')
                     ?
                         <Login/>
-                    :
-                        <Register/>
+                    : (current === 'register')
+                        ?
+                            <Register/>
+                        :
+                            <Grievance/>
 
             }
             </div>
