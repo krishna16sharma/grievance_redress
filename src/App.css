@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+.navbar{
+    color: white;
+    padding: 2px;
+    margin: 2px;
+    display:flex;
+}
+.home{
+    margin-top: 20vh;
+    margin-bottom: auto;
+    text-align:center;
+}
+.btn:hover{
+    cursor: pointer;
+}
