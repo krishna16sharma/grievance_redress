@@ -8,21 +8,21 @@ import Grievance from './components/grievance_form/grievance_form';
 import './App.css';
 
 const initialState = {
-    current: 'regis'
-}
-const routeChange = (current) =>{
-    this.setState({current: current})
+    current: 'home'
 }
 class App extends React.Component{
     constructor(props){
         super(props);
         this.state = initialState;
     }
+    routeChange = (current) =>{
+        this.setState({current: current})
+    }
   render(){
       const {current} = this.state;
       return (
           <div>
-            <Navigation current={{current}}/>
+            <Navigation current={{current}} routeChange={this.routeChange}/>
           {
               (current === 'home')
                ?
@@ -31,7 +31,7 @@ class App extends React.Component{
                    </div>
                 : (current === 'login')
                     ?
-                        <Login/>
+                        <Login routeChange={this.routeChange}/>
                     : (current === 'register')
                         ?
                             <Register/>

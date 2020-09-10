@@ -4,12 +4,22 @@ import React , {Component} from 'react';
 
 function changeDropdown(){
     var drop = document.getElementById("dropdown1");
-    console.log(drop);
-    //var selectElement =  document.querySelector('#dropdown');
-//    var output = selectElement.value;
-    //ocument.querySelector('.output').textContent = output;
-    //dropdown_opt = value;
-//    console.log(output);
+    console.log(drop.value);
+    var cb = document.getElementById("Concerned_body");
+    var c_tb = document.getElementById("cbTxt");
+    if(drop.value == 1){
+        cb.innerHTML = "Department";
+        c_tb.placeholder = "Enter Department Name";
+    }
+    else if (drop.value == 2) {
+        cb.innerHTML = "State";
+        c_tb.placeholder = "Enter State Name";
+        console.log(c_tb.placeholder);
+    }
+    else if (drop.value == 3) {
+        cb.innerHTML ="Union Territory";
+        c_tb.placeholder = "Enter Union Territory Name";
+    }
 }
 
 class Grievance extends React.Component{
@@ -24,7 +34,7 @@ class Grievance extends React.Component{
                 <form>
                 <div className="form-group my-1">
                   <label className="mr-sm-2" for="dropdown1">To</label>
-                  <select className="custom-select mr-sm-2" id="dropdown1" onClick={changeDropdown()}>
+                  <select className="custom-select mr-sm-2" id="dropdown1" onClick={changeDropdown}>
                     <option value="1">Department</option>
                     <option value="2">State</option>
                     <option value="3">Union Territory</option>
@@ -37,8 +47,8 @@ class Grievance extends React.Component{
                   </div>
 
                     <div className="form-group my-1 ">
-                      <label for="g_type">Department</label>
-                      <input type="text" className="form-control" id="g_type" placeholder="Enter Department Name"/>
+                      <label for="cbTxt" id="Concerned_body">Department</label>
+                      <input type="text" className="form-control" id="cbTxt" placeholder="Enter Department Name"/>
                     </div>
                     <div className="form-group my-1">
                       <label for="grievance_desc">Description</label>
