@@ -1,3 +1,6 @@
+p{
+    font-size: 18px;
+}
 .App {
   text-align: center;
 }
@@ -16,6 +19,14 @@
     cursor: pointer;
     opacity: 1;
     color: white;
+}
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 @media (min-width: 390px){
     .navbar-expand-lg .navbar-nav .nav-link {
