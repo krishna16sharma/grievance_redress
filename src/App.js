@@ -4,6 +4,7 @@ import Navigation from './components/Navigation/Navigation';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Grievance from './components/grievance_form/grievance_form';
+import Aadhaar from './components/Aadhaar/aadhaar';
 import grievance1 from "./components/images/Grievance1.png";
 import Particles from 'react-particles-js';
 
