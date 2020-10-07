@@ -5,6 +5,10 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Grievance from './components/grievance_form/grievance_form';
 import Aadhaar from './components/Aadhaar/aadhaar';
+import Dashboard from './components/Dashboard/dashboard';
+import Adm_Dashboard from './components/Dashboard/adm_dashboard';
+import G_details from './components/G_details/G_details';
+import WebTraffic from './components/WebTraffic/webtraffic';
 import grievance1 from "./components/images/Grievance1.png";
 import Particles from 'react-particles-js';
 
@@ -33,7 +37,8 @@ const particlesOptions = {
 
 
 const initialState = {
-    current: 'h'
+    current: 'webtraffic',
+    logged: 1
 }
 class App extends React.Component{
     constructor(props){
@@ -44,13 +49,13 @@ class App extends React.Component{
         this.setState({current: current})
     }
   render(){
-      const {current} = this.state;
+      const {current,logged} = this.state;
       return (
           <div>
           <Particles className='particles'
             params={particlesOptions}
             />
-            <Navigation current={{current}} routeChange={this.routeChange}/>
+            <Navigation current={{current}} logged={{logged}} routeChange={this.routeChange}/>
           {
               (current === 'home')
                ?
@@ -70,7 +75,15 @@ class App extends React.Component{
                         ?
                             <Register/>
                         :
-                            <Grievance/>
+                        (current === 'grievances')
+                            ?
+                                <Adm_Dashboard routeChange={this.routeChange}/>
+                            :
+                            (current === 'webtraffic')
+                                ?
+                                <WebTraffic routeChange={this.routeChange}/>
+                                :
+                                <Aadhaar/>
 
             }
             </div>

@@ -27,16 +27,30 @@ class Navigation extends React.Component{
                                  </div>
                  </nav>
                   :
-                  <nav className="navbar navbar-expand-lg navbar-dark bg-dark mx-auto">
+                  (this.props.current.current === 'login' || this.props.current.current === 'register')
+                   ?
+                   <nav className="navbar navbar-expand-lg navbar-dark bg-dark mx-auto">
+                             <a className="navbar-brand" href="#">Grievance Redressal</a>
+                                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                                   <ul className="navbar-nav ml-auto ">
+                                       <li className="nav-item">
+                                           <a className="nav-link" onClick ={()=>this.routeChange('home')} >Back</a>
+                                       </li>
+                                   </ul>
+                                   </div>
+                   </nav>
+                    :
+
+                  <nav className="navbar navbar-expand-lg navbar-dark bg-dark mx-auto w-100">
                             <a className="navbar-brand" href="#">Grievance Redressal</a>
                                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                   <ul className="navbar-nav ml-auto ">
                                       <li className="nav-item">
-                                          <a className="nav-link" onClick ={()=>this.routeChange('home')} >Back</a>
+                                          <a className="nav-link" onClick = {()=> this.routeChange('login')}>Logout</a>
                                       </li>
                                   </ul>
                                   </div>
-                  </nav>
+                   </nav>
 
               }
 

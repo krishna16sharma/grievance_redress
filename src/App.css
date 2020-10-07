@@ -1,6 +1,12 @@
 p{
     font-size: 18px;
 }
+thead{
+    background-color: #C7B7FF;
+}
+tfoot{
+    background-color: #C7B7FF;
+}
 .App {
   text-align: center;
 }
