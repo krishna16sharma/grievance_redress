@@ -1,11 +1,17 @@
 import React , {Component} from 'react';
 
 class Dashboard extends React.Component{
+    routeChange = ( route ) =>{
+        this.props.routeChange(route);
+    }
     render(){
         return(
             <div className="container-fluid">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <div class="my-2 d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn-lg" onClick ={()=>this.routeChange('grievance_form')}>New Grievance</button>
+                    </div>
                   </div>
                   <div class="row">
 
@@ -67,17 +73,17 @@ class Dashboard extends React.Component{
                   <tbody>
 
                   <tr role="row" class="odd">
-                          <td class="sorting_1">DT001</td>
-                          <td class="">Water Problem</td>
-                          <td>29/08/20</td>
+                          <td class="sorting_1">GRDP2_1</td>
+                          <td class="">Security issues</td>
+                          <td>12/04/2020</td>
                           <td>Pending</td>
-                          <td><a href="#">Click to View</a></td>
+                          <td><a href="#" onClick={()=>this.routeChange('g_details')}>Click to View</a></td>
                         </tr><tr role="row" class="even">
-                            <td class="sorting_1">UT002</td>
-                            <td class="">Garbage disposal</td>
-                            <td>12/08/20</td>
+                            <td class="sorting_1">GRDP3_1</td>
+                            <td class="">Day to day needs</td>
+                            <td>11/07/2020</td>
                             <td>Solved</td>
-                            <td><a href="#">Click to View</a></td>
+                            <td><a href="#" onClick={()=>this.routeChange('g_details')}>Click to View</a></td>
                           </tr>
                         </tbody>
                     </table>

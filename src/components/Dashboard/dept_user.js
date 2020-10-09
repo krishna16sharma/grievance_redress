@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 
-class Adm_Dashboard extends React.Component{
+class Dept_user extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
@@ -9,9 +9,6 @@ class Adm_Dashboard extends React.Component{
             <div className="container-fluid">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <div class="my-2 d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary btn-lg" onClick ={()=>this.routeChange('webtraffic')}>Web Traffic</button>
-                    </div>
                   </div>
                   <div class="row">
 
@@ -34,7 +31,7 @@ class Adm_Dashboard extends React.Component{
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Grievance Pending</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                     </div>
                   </div>
                 </div>
@@ -58,19 +55,12 @@ class Adm_Dashboard extends React.Component{
                     <tr><th rowspan="1" colspan="1">ID</th><th rowspan="1" colspan="1">User ID</th><th rowspan="1" colspan="1">Date</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">View</th></tr>
                   </tfoot>
                   <tbody>
-
                   <tr role="row" class="odd">
                           <td class="sorting_1">GRDP3_1</td>
                           <td class="">US02</td>
                           <td>11/07/2020</td>
                           <td>Solved</td>
-                          <td><a href="#" onClick={()=>this.routeChange('g_details2')}>Click to View</a></td>
-                        </tr><tr role="row" class="even">
-                            <td class="sorting_1">GRDP2_1</td>
-                            <td class="">US02</td>
-                            <td>12/04/2020</td>
-                            <td>Pending</td>
-                            <td><a href="#" onClick={()=>this.routeChange('g_details2')}>Click to View</a></td>
+                          <td><a href="#" onClick={()=>this.routeChange('g_details1')}>Click to View</a></td>
                           </tr>
                         </tbody>
                     </table>
@@ -83,4 +73,4 @@ class Adm_Dashboard extends React.Component{
     }
 }
 
-export default Adm_Dashboard;
+export default Dept_user;

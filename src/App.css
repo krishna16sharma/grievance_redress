@@ -10,6 +10,9 @@ tfoot{
 .App {
   text-align: center;
 }
+.validation{
+    visibility: hidden;
+}
 .navbar{
     color: white;
     padding: 2px;

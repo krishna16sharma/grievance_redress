@@ -9,20 +9,21 @@ class G_details extends React.Component{
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <p>
-                                            <strong>Type:</strong> Security issues
+                                            <strong>Type:</strong> Day to day needs
                                         </p>
                                     </div>
                                     <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <p><strong>Assigned to:</strong> ADM01</p>
-                                        <p><strong>Status:</strong> Pending</p>
-                                        <p><strong>ResponseID:</strong> R3</p>
+                                        <p><strong>Status:</strong> Solved</p>
+                                        <p><strong>ResponseID:</strong> R8</p>
                                     </div>
                                     <hr/>
-                                      Hello, I need the help of police,robberies have increased in my area.
+                                      Roads are very bad in my area.
                                     </div>
                                     <hr/>
-                                        <strong>Response:</strong> Your grievance will be forwarded to the police department.
+                                        <strong>Response:</strong>
+                                    New roads were laid in and around that area by R&B department.Hope now it is fine
                                   </div>
                             </div>
                     </div>

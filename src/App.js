@@ -7,7 +7,10 @@ import Grievance from './components/grievance_form/grievance_form';
 import Aadhaar from './components/Aadhaar/aadhaar';
 import Dashboard from './components/Dashboard/dashboard';
 import Adm_Dashboard from './components/Dashboard/adm_dashboard';
+import Dept_user from './components/Dashboard/dept_user';
 import G_details from './components/G_details/G_details';
+import G_details1 from './components/G_details/G_details1';
+import G_details2 from './components/G_details/G_details2';
 import WebTraffic from './components/WebTraffic/webtraffic';
 import grievance1 from "./components/images/Grievance1.png";
 import Particles from 'react-particles-js';
@@ -37,7 +40,7 @@ const particlesOptions = {
 
 
 const initialState = {
-    current: 'webtraffic',
+    current: 'home',
     logged: 1
 }
 class App extends React.Component{
@@ -47,6 +50,7 @@ class App extends React.Component{
     }
     routeChange = (current) =>{
         this.setState({current: current})
+        console.log(current)
     }
   render(){
       const {current,logged} = this.state;
@@ -73,17 +77,41 @@ class App extends React.Component{
                         <Login routeChange={this.routeChange}/>
                     : (current === 'register')
                         ?
-                            <Register/>
+                            <Register routeChange={this.routeChange}/>
                         :
-                        (current === 'grievances')
+                        (current === 'aadhaar')
                             ?
-                                <Adm_Dashboard routeChange={this.routeChange}/>
+                            <Aadhaar routeChange={this.routeChange}/>
                             :
-                            (current === 'webtraffic')
+                            (current === 'adm_login')
                                 ?
-                                <WebTraffic routeChange={this.routeChange}/>
+                                    <Adm_Dashboard routeChange={this.routeChange}/>
                                 :
-                                <Aadhaar/>
+                                (current === 'grievance_form')
+                                    ?
+                                        <Grievance routeChange={this.routeChange}/>
+                                    :
+                                    (current === 'g_details')
+                                        ?
+                                        <G_details routeChange={this.routeChange}/>
+                                        :
+                                    (current === 'webtraffic')
+                                        ?
+                                        <WebTraffic routeChange={this.routeChange}/>
+                                        :
+                                        (current === 'dashboard')
+                                            ?
+                                            <Dashboard routeChange={this.routeChange}/>
+                                            :
+                                            (current === 'g_details1')
+                                                ?
+                                                <G_details1 routeChange={this.routeChange}/>
+                                                :
+                                                (current === 'g_details2')
+                                                    ?
+                                                    <G_details2 routeChange={this.routeChange}/>
+                                                    :
+                                            <Dept_user routeChange={this.routeChange}/>
 
             }
             </div>

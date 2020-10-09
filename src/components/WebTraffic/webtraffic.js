@@ -3,6 +3,7 @@ import React , {Component} from 'react';
 class WebTraffic extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
+        console.log(route)
     }
     render(){
         return(
@@ -10,7 +11,7 @@ class WebTraffic extends React.Component{
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     <div class="my-2 d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary btn-lg" onClick ={()=>this.routeChange('grievances')}>Grievances</button>
+                        <button type="button" class="btn btn-primary btn-lg" onClick ={()=>this.routeChange('adm_login')}>Grievances</button>
                     </div>
                   </div>
             <div class="card shadow mb-4">
@@ -24,22 +25,22 @@ class WebTraffic extends React.Component{
                       <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"  style={{width: "83.4px"}} aria-sort="ascending">User ID</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "136.2px"}}>log ID</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "61px"}}>IP</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "30.6px"}}>Activity</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "68.2px"}}>Timestamp</th></tr>
                     </thead>
                     <tfoot>
-                      <tr><th rowspan="1" colspan="1">User ID</th><th rowspan="1" colspan="1">log ID</th><th rowspan="1" colspan="1">IP</th><th rowspan="1" colspan="1">activity</th><th rowspan="1" colspan="1">Timestamp</th></tr>
+                      <tr><th rowspan="1" colspan="1">User ID</th><th rowspan="1" colspan="1">log ID</th><th rowspan="1" colspan="1">IP</th><th rowspan="1" colspan="1">Activity</th><th rowspan="1" colspan="1">Timestamp</th></tr>
                     </tfoot>
                     <tbody>
 
                     <tr role="row" class="odd">
-                            <td class="sorting_1">USER20007</td>
-                            <td class="">2</td>
-                            <td>172.15.4.20</td>
+                            <td class="sorting_1">US02</td>
+                            <td class="">L1</td>
+                            <td>216.3.128.12</td>
                             <td>Submitted Grievance</td>
-                            <td>2020-08-28 20:01:40</td>
+                            <td>2020-07-11 20:01:40</td>
                           </tr><tr role="row" class="even">
-                              <td class="sorting_1">USER20007</td>
-                              <td class="">1</td>
-                              <td>172.15.4.20</td>
-                              <td>Submitted Grievance</td>
-                              <td>2020-08-12 17:30:45</td>
+                              <td class="sorting_1">US02</td>
+                              <td class="">L2</td>
+                              <td>216.3.128.12</td>
+                              <td>Checked Grievance status</td>
+                              <td>2020-07-11 21:30:45</td>
                             </tr>
                           </tbody>
                       </table>

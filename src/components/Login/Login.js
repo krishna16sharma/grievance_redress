@@ -4,6 +4,24 @@ class Login extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
+    validate =()=>{
+        var uname =  document.getElementById("username").value;
+        var pwd =  document.getElementById("password").value;
+        console.log(pwd.trim())
+        if(uname.trim() === "" || pwd.trim() === ""){
+            alert("Invalid Input. Please enter again")
+            this.routeChange('login')
+        }
+        else if (uname.toLowerCase().trim() == "krishna") {
+            this.routeChange('adm_login')
+        }
+        else if (uname.toLowerCase().trim() == "water") {
+            this.routeChange('dept_user')
+        }
+        else{
+            this.routeChange('dashboard')
+        }
+    }
     render(){
         return(
                     <div className="container" style={{marginTop:'20vh'}}>
@@ -15,13 +33,13 @@ class Login extends React.Component{
                     			<div className="card-body">
                     				<form>
                     					<div className="input-group form-group">
-                    						<input type="text" className="form-control" placeholder="username"/>
+                    						<input type="text" className="form-control" placeholder="username" id="username" required/>
                     					</div>
                     					<div className="input-group form-group">
-                    						<input type="password" className="form-control" placeholder="password"/>
+                    						<input type="password" className="form-control" placeholder="password" id="password" required/>
                     					</div>
                     					<div className="form-group">
-                    						<input type="submit" value="Login" className="btn btn-primary login_btn"/>
+                    						<input type="submit" value="Login" className="btn btn-primary login_btn" onClick ={()=>this.validate()}/>
                     					</div>
                     				</form>
                     			</div>

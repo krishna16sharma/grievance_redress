@@ -2,6 +2,28 @@ import React, {Component} from 'react';
 //import './Register.css';
 
 class Register extends React.Component{
+    routeChange = ( route ) =>{
+        this.props.routeChange(route);
+    }
+    validate =()=>{
+        var letters = /^[A-Za-z]+$/;
+        var numbers = /^[0-9]+$/;
+        var letterNumber = /^[0-9a-zA-Z]+$/;
+        var mail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var name =  document.getElementById("name").value;
+        var pwd =  document.getElementById("pwd_reg").value;
+        var ph = document.getElementById("ph_reg").value;
+        var email =  document.getElementById("email_reg").value;
+        if(name.trim().match(letters) && email.trim().match(mail) && ph.trim().match(numbers)){
+            if(ph.length == 10){
+                this.routeChange('aadhaar')
+            }
+        }
+        else{
+            alert("Invalid Input. Please enter again")
+            this.routeChange('register')
+        }
+    }
     render(){
         return(
             <div class="container my-3">
@@ -16,26 +38,22 @@ class Register extends React.Component{
                                             <div class="col-sm-12">
                                                     <div class="form-group">
                                                         <label>Name</label>
-                                                        <input type="text" placeholder="Enter Name" class="form-control"/>
+                                                        <input type="text" placeholder="Enter Name" class="form-control" id="name"required/>
                                                     </div>
                                                     <div class="form-group pass_show">
                                                         <label>Password</label>
-                                                        <input type="password" class="form-control" placeholder="Password"/>
+                                                        <input type="password" class="form-control" placeholder="Password" id="pwd_reg" required/>
                                                     </div>
                                             <div class="form-group">
                                                 <label>Phone Number</label>
-                                                <input type="text" placeholder="Enter Phone Number" class="form-control"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Aadhar Number</label>
-                                                <input type="text" placeholder="Enter Aadhar Number" class="form-control"/>
+                                                <input type="text" placeholder="Enter Phone Number" class="form-control" id="ph_reg" required/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Email Address</label>
-                                                <input type="text" placeholder="Enter Email Address" class="form-control"/>
+                                                <input type="text" placeholder="Enter Email Address" class="form-control" id="email_reg" required/>
                                             </div>
                                                 <div class="d-flex justify-content-center">
-                                                    <button type="button" class="btn btn-primary btn-info py-1 my-2">Register</button>
+                                                    <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.validate()}>Register</button>
                                                 </div>
                                             </div>
                                         </form>
