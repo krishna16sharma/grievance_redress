@@ -15,7 +15,7 @@ class Login extends React.Component{
         else if (uname.toLowerCase().trim() == "krishna") {
             this.routeChange('adm_login')
         }
-        else if (uname.toLowerCase().trim() == "water") {
+        else if (uname.toLowerCase().trim() == "road") {
             this.routeChange('dept_user')
         }
         else{

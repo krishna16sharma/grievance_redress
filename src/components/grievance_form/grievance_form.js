@@ -35,7 +35,7 @@ class Grievance extends React.Component{
         var desc_error = document.getElementById("desc_error");
         console.log(desc,desc.trim()==="" )
         var flag = 1
-        if(gType!="Water Problem"){
+        if(gType!="Security issues"){
             gType_redText.classList.remove("validation");
             flag = 0;
         }
