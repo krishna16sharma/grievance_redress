@@ -13,6 +13,7 @@ import G_details1 from './components/G_details/G_details1';
 import G_details2 from './components/G_details/G_details2';
 import WebTraffic from './components/WebTraffic/webtraffic';
 import grievance1 from "./components/images/Grievance1.png";
+import Response from './components/Response_form/Response';
 import Particles from 'react-particles-js';
 
 import './App.css';
@@ -40,7 +41,7 @@ const particlesOptions = {
 
 
 const initialState = {
-    current: 'home',
+    current: 'g_details1',
     logged: 1
 }
 class App extends React.Component{
@@ -111,7 +112,11 @@ class App extends React.Component{
                                                     ?
                                                     <G_details2 routeChange={this.routeChange}/>
                                                     :
-                                            <Dept_user routeChange={this.routeChange}/>
+                                                    (current === 'response')
+                                                        ?
+                                                        <Response routeChange={this.routeChange}/>
+                                                        :
+                                                        <Dept_user routeChange={this.routeChange}/>
 
             }
             </div>

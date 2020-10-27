@@ -13,17 +13,17 @@ class G_details2 extends React.Component{
                                         </p>
                                     </div>
                                     <div class="card-body">
+                                      Roads are very bad in my area.
+                                      <hr/>
                                     <div class="d-flex justify-content-between">
                                         <p><strong>Assigned to:</strong> ADM01</p>
                                         <p><strong>Status:</strong> Solved</p>
                                         <p><strong>ResponseID:</strong> R8</p>
                                     </div>
                                     <hr/>
-                                      Roads are very bad in my area.
-                                    </div>
-                                    <hr/>
-                                        <strong>Response:</strong>
+                                        <strong>Response: </strong>
                                     New roads were laid in and around that area by R&B department.Hope now it is fine
+                                    </div>
                                   </div>
                             </div>
                     </div>

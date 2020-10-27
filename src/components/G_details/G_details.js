@@ -13,16 +13,17 @@ class G_details extends React.Component{
                                         </p>
                                     </div>
                                     <div class="card-body">
+                                     Hello, I need the help of police,robberies have increased in my area.
+                                     <hr/>
                                     <div class="d-flex justify-content-between">
                                         <p><strong>Assigned to:</strong> ADM01</p>
                                         <p><strong>Status:</strong> Pending</p>
                                         <p><strong>ResponseID:</strong> R3</p>
                                     </div>
                                     <hr/>
-                                      Hello, I need the help of police,robberies have increased in my area.
-                                    </div>
-                                    <hr/>
                                         <strong>Response:</strong> Your grievance will be forwarded to the police department.
+                                    </div>
+
                                   </div>
                             </div>
                     </div>
