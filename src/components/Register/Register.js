@@ -5,7 +5,32 @@ class Register extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
-    validate =()=>{
+    onSubmitSignIn = () =>{
+        fetch('http://localhost:3000/register',{
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: document.getElementById("email_reg").value,
+                pwd: document.getElementById("pwd_reg").value,
+                name: document.getElementById("name").value,
+                //ph:document.getElementById("ph_reg").value,
+                u_name:document.getElementById("u_name").value
+            })
+        })
+        .then(response => response.json())
+        .then(user =>{
+            if(user.person_id){
+                console.log(user);
+                this.props.loadUser(user);
+                this.routeChange('aadhaar')
+            }
+            else{
+                alert("Invalid Input. Please enter again")
+                this.routeChange('register')
+            }
+        })
+    }
+    /*validate =()=>{
         var letters = /^[A-Za-z]+$/;
         var numbers = /^[0-9]+$/;
         var letterNumber = /^[0-9a-zA-Z]+$/;
@@ -23,7 +48,7 @@ class Register extends React.Component{
             alert("Invalid Input. Please enter again")
             this.routeChange('register')
         }
-    }
+    }*/
     render(){
         return(
             <div class="container my-3">
@@ -40,20 +65,20 @@ class Register extends React.Component{
                                                         <label>Name</label>
                                                         <input type="text" placeholder="Enter Name" class="form-control" id="name"required/>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" placeholder="Enter Username" class="form-control" id="u_name"required/>
+                                                    </div>
                                                     <div class="form-group pass_show">
                                                         <label>Password</label>
                                                         <input type="password" class="form-control" placeholder="Password" id="pwd_reg" required/>
                                                     </div>
                                             <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input type="text" placeholder="Enter Phone Number" class="form-control" id="ph_reg" required/>
-                                            </div>
-                                            <div class="form-group">
                                                 <label>Email Address</label>
                                                 <input type="text" placeholder="Enter Email Address" class="form-control" id="email_reg" required/>
                                             </div>
                                                 <div class="d-flex justify-content-center">
-                                                    <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.validate()}>Register</button>
+                                                    <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.onSubmitSignIn()}>Register</button>
                                                 </div>
                                             </div>
                                         </form>

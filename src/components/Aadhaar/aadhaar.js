@@ -8,6 +8,42 @@ class Aadhaar extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
+    onSubmitSignIn = (date,month,year,door,street,area,city,state) =>{
+        console.log(date, month, document.getElementById("a_no").value, this.props.user.email)
+        fetch('http://localhost:3000/aadhaar',{
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: this.props.user.email,
+                password: this.props.user.password,
+                person_id: this.props.user.person_id,
+                person_name: this.props.user.person_name,
+                username: this.props.user.username,
+                a_no: document.getElementById("a_no").value,
+                day: date,
+                month: month,
+                year: year,
+                door_no: door,
+                street: street,
+                area: area,
+                city: city,
+                state: state
+            })
+        })
+        .then(response => response.json())
+        .then(user =>{
+            console.log(user)
+            if(user.person_id){
+                //console.log(user);
+                //this.props.loadUser(user);
+                this.routeChange('login')
+            }
+            else{
+                alert("Invalid Input. Please enter again")
+                this.routeChange('register')
+            }
+        })
+    }
     validate =()=>{
         var letters = /^[A-Za-z]+$/;
         var numbers = /^[0-9]+$/;
@@ -18,11 +54,20 @@ class Aadhaar extends React.Component{
         var address = document.getElementById("a_address").value;
         var add_error = document.getElementById("add_error");
         console.log(dob , typeof dob);
-        if(a_no.trim().match(numbers)){
-            if(a_no.length == 12 && this.isDateBeforeToday(dob)){
+        if(a_no.trim().match(numbers) && a_no.length == 12 && this.isDateBeforeToday(dob) && address.trim()!==""){
+                var date = new Date(dob).getDate();
+                var month = new Date(dob).getMonth()+1;
+                var year = new Date(dob).getFullYear();
+                var split_address = address.split(',');
+                var door = split_address[0].trim();
+                var street = split_address[1].trim();
+                var area = split_address[2].trim();
+                var city = split_address[3].trim();
+                var state = split_address[4].trim();
+                console.log(date,month,year,door,street,area,city,state);
+                this.onSubmitSignIn(date,month,year,door,street,area,city,state);
                 alert("Successfully registered Aadhaar Information!")
-                this.routeChange('login')
-            }
+                //this.routeChange('login')
         }
         else{
             if(a_no.length!=12){
@@ -38,6 +83,7 @@ class Aadhaar extends React.Component{
         }
     }
     render(){
+        console.log(this.props.user)
         return(
             <div className='row d-flex align-items-center mx-auto min-vh-100 '>
             <div className='container col d-flex justify-content-center'>

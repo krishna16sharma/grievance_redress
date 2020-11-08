@@ -41,9 +41,18 @@ const particlesOptions = {
 
 
 const initialState = {
-    current: 'g_details1',
-    logged: 1
+    current: 'login',
+    logged: 1,
+    user: {
+        person_id: '',
+        person_name: '',
+        username: '',
+        password: '',
+        email: ''
+    }
 }
+
+
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -53,8 +62,22 @@ class App extends React.Component{
         this.setState({current: current})
         console.log(current)
     }
+    loadUser =(data)=>{
+        this.setState(
+            {user:
+                {
+                    person_id: data.person_id,
+                    person_name: data.person_name,
+                    username: data.username,
+                    password: data.password,
+                    email: data.email
+                }
+            }
+        )
+        console.log("Loaded", this.state.user)
+    }
   render(){
-      const {current,logged} = this.state;
+      const {current,logged,user} = this.state;
       return (
           <div>
           <Particles className='particles'
@@ -78,11 +101,11 @@ class App extends React.Component{
                         <Login routeChange={this.routeChange}/>
                     : (current === 'register')
                         ?
-                            <Register routeChange={this.routeChange}/>
+                            <Register routeChange={this.routeChange} loadUser={this.loadUser}/>
                         :
                         (current === 'aadhaar')
                             ?
-                            <Aadhaar routeChange={this.routeChange}/>
+                            <Aadhaar routeChange={this.routeChange} user={user}/>
                             :
                             (current === 'adm_login')
                                 ?

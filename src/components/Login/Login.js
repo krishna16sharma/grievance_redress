@@ -4,6 +4,37 @@ class Login extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
+    onSubmitSignIn = () =>{
+        fetch('http://localhost:3000/login',{
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: document.getElementById("username").value,//this.state.loginUsername,
+                password: document.getElementById("password").value
+            })
+        })
+        .then(response => response.json())
+        .then(user => {
+            if(user.person_id){
+                alert("Hello! "+user.person_name);
+                if(user.type == 'users'){
+                    this.routeChange('dashboard');
+                }
+                else if (user.type == 'department') {
+                    this.routeChange('dept_user')
+                }
+                else if(user.type == 'admin'){
+                    this.routeChange('adm_login')
+                }
+                console.log(user);
+                //this.props.loadUser(user);
+            }
+            else{
+                alert("Invalid credentials")
+            }
+        })
+
+    }
     validate =()=>{
         var uname =  document.getElementById("username").value;
         var pwd =  document.getElementById("password").value;
@@ -39,7 +70,7 @@ class Login extends React.Component{
                     						<input type="password" className="form-control" placeholder="password" id="password" required/>
                     					</div>
                     					<div className="form-group">
-                    						<input type="submit" value="Login" className="btn btn-primary login_btn" onClick ={()=>this.validate()}/>
+                    						<input type="button" value="Login" className="btn btn-primary login_btn" onClick ={()=>this.onSubmitSignIn()}/>
                     					</div>
                     				</form>
                     			</div>
