@@ -48,6 +48,8 @@ const initialState = {
         person_name: '',
         username: '',
         password: '',
+        person_ph_number: '',
+        ph2:'',
         email: ''
     }
 }
@@ -70,7 +72,9 @@ class App extends React.Component{
                     person_name: data.person_name,
                     username: data.username,
                     password: data.password,
-                    email: data.email
+                    email: data.email,
+                    person_ph_number: data.person_ph_number,
+                    ph2: data.ph2
                 }
             }
         )

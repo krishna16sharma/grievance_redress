@@ -18,6 +18,8 @@ class Aadhaar extends React.Component{
                 password: this.props.user.password,
                 person_id: this.props.user.person_id,
                 person_name: this.props.user.person_name,
+                person_ph_number: this.props.user.person_ph_number,
+                ph2: this.props.user.ph2,
                 username: this.props.user.username,
                 a_no: document.getElementById("a_no").value,
                 day: date,

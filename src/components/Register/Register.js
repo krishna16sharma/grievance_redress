@@ -6,29 +6,39 @@ class Register extends React.Component{
         this.props.routeChange(route);
     }
     onSubmitSignIn = () =>{
-        fetch('http://localhost:3000/register',{
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: document.getElementById("email_reg").value,
-                pwd: document.getElementById("pwd_reg").value,
-                name: document.getElementById("name").value,
-                //ph:document.getElementById("ph_reg").value,
-                u_name:document.getElementById("u_name").value
+        var numbers = /^[0-9]+$/;
+        var ph = document.getElementById("ph_reg").value;
+        var ph2 = document.getElementById("ph2_reg").value;
+        if(ph.length == 10 && (ph2.length==0 || ph2.length==10)){
+            fetch('http://localhost:3000/register',{
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: document.getElementById("email_reg").value,
+                    pwd: document.getElementById("pwd_reg").value,
+                    name: document.getElementById("name").value,
+                    ph:document.getElementById("ph_reg").value,
+                    ph2:document.getElementById("ph2_reg").value,
+                    u_name:document.getElementById("u_name").value
+                })
             })
-        })
-        .then(response => response.json())
-        .then(user =>{
-            if(user.person_id){
-                console.log(user);
-                this.props.loadUser(user);
-                this.routeChange('aadhaar')
-            }
-            else{
-                alert("Invalid Input. Please enter again")
-                this.routeChange('register')
-            }
-        })
+            .then(response => response.json())
+            .then(user =>{
+                console.log(user)
+                if(user.person_id){
+                    console.log(user);
+                    this.props.loadUser(user);
+                    this.routeChange('aadhaar')
+                }
+                else{
+                    alert("Invalid Input. Please enter again")
+                    this.routeChange('register')
+                }
+            })
+        }
+        else{
+            alert("Please recheck input.")
+        }
     }
     /*validate =()=>{
         var letters = /^[A-Za-z]+$/;
@@ -73,13 +83,21 @@ class Register extends React.Component{
                                                         <label>Password</label>
                                                         <input type="password" class="form-control" placeholder="Password" id="pwd_reg" required/>
                                                     </div>
-                                            <div class="form-group">
-                                                <label>Email Address</label>
-                                                <input type="text" placeholder="Enter Email Address" class="form-control" id="email_reg" required/>
-                                            </div>
-                                                <div class="d-flex justify-content-center">
-                                                    <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.onSubmitSignIn()}>Register</button>
-                                                </div>
+                                                    <div class="form-group">
+                                                        <label>Phone Number</label>
+                                                        <input type="text" placeholder="Enter Phone Number" class="form-control" id="ph_reg"required/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Second Phone Number (Optional)</label>
+                                                        <input type="text" placeholder="(Optional)" class="form-control" id="ph2_reg"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Email Address</label>
+                                                        <input type="text" placeholder="Enter Email Address" class="form-control" id="email_reg" required/>
+                                                    </div>
+                                                    <div class="d-flex justify-content-center">
+                                                        <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.onSubmitSignIn()}>Register</button>
+                                                    </div>
                                             </div>
                                         </form>
                                         </div>
