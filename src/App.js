@@ -102,7 +102,7 @@ class App extends React.Component{
                    </div>
                 : (current === 'login')
                     ?
-                        <Login routeChange={this.routeChange}/>
+                        <Login routeChange={this.routeChange} loadUser={this.loadUser}/>
                     : (current === 'register')
                         ?
                             <Register routeChange={this.routeChange} loadUser={this.loadUser}/>
@@ -117,7 +117,7 @@ class App extends React.Component{
                                 :
                                 (current === 'grievance_form')
                                     ?
-                                        <Grievance routeChange={this.routeChange}/>
+                                        <Grievance routeChange={this.routeChange} user={user}/>
                                     :
                                     (current === 'g_details')
                                         ?
@@ -129,7 +129,7 @@ class App extends React.Component{
                                         :
                                         (current === 'dashboard')
                                             ?
-                                            <Dashboard routeChange={this.routeChange}/>
+                                            <Dashboard routeChange={this.routeChange} user={user}/>
                                             :
                                             (current === 'g_details1')
                                                 ?

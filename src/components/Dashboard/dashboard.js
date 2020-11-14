@@ -1,8 +1,52 @@
 import React , {Component} from 'react';
 
 class Dashboard extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            user: []
+        }
+    }
     routeChange = ( route ) =>{
         this.props.routeChange(route);
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:3000/dashboard',{
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                user: this.props.user
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            //var t_body = document.getElementById('table_body');
+            //var content = t_body.innerHTML;
+            //console.log(content);
+            var pending = 0;
+            var submitted = 0;
+            var solved = 0;
+            for(var item in data){
+                //console.log(item)
+                var curr_item = data[item];
+                if(curr_item.status == 'pending'){
+                    pending+=1
+                }
+                else if( curr_item.status == 'solved'){
+                    solved+=1
+                }
+                //t_body.innerHTML+=`<tr role="row" class="odd"><td class="sorting_1">${curr_item.grievance_id}</td><td class="">${curr_item.grievance_type}</td><td>${curr_item.day}/${curr_item.month}/${curr_item.year}</td><td>${curr_item.status}</td><td><a href="#" onClick={()=&gtthis.routeChange('g_details')}>Click to View</a></td></tr>`
+            }
+            document.getElementById('g_submitted').innerHTML = data.length;
+            document.getElementById('g_pending').innerHTML = pending;
+            document.getElementById('g_solved').innerHTML = solved;
+            console.log(pending,solved, data.length);
+
+            console.log(data)
+            this.setState({user: data})
+        })
     }
     render(){
         return(
@@ -22,7 +66,7 @@ class Dashboard extends React.Component{
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Grievance Submitted</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="g_submitted">2</div>
                     </div>
                   </div>
                 </div>
@@ -36,7 +80,7 @@ class Dashboard extends React.Component{
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Grievance Solved</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="g_solved">1</div>
                     </div>
                   </div>
                 </div>
@@ -49,7 +93,7 @@ class Dashboard extends React.Component{
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Grievance Pending</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="g_pending">1</div>
                     </div>
                   </div>
                 </div>
@@ -62,7 +106,7 @@ class Dashboard extends React.Component{
               <h6 class="m-0 font-weight-bold text-primary">Grievances</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
+              <div class="table-responsive" id="table">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style={{width: "100%"}}>
                   <thead>
                     <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"  style={{width: "83.4px"}} aria-sort="ascending">ID</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "136.2px"}}>Type</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "61px"}}>Date</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "30.6px"}}>Status</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style={{width: "68.2px"}}>View</th></tr>
@@ -70,22 +114,21 @@ class Dashboard extends React.Component{
                   <tfoot>
                     <tr><th rowspan="1" colspan="1">ID</th><th rowspan="1" colspan="1">Type</th><th rowspan="1" colspan="1">Date</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">View</th></tr>
                   </tfoot>
-                  <tbody>
-
-                  <tr role="row" class="odd">
-                          <td class="sorting_1">GRDP2_1</td>
-                          <td class="">Security issues</td>
-                          <td>12/04/2020</td>
-                          <td>Pending</td>
+                  <tbody id="table_body">
+                  {this.state.user.map((data, key)=>{
+                      return(
+                          <tr key={key}>
+                          <td>{data.grievance_id}</td>
+                          <td>{data.grievance_type}</td>
+                          <td>{data.day}/{data.month}/{data.year}</td>
+                          <td>{data.status}</td>
                           <td><a href="#" onClick={()=>this.routeChange('g_details')}>Click to View</a></td>
-                        </tr><tr role="row" class="even">
-                            <td class="sorting_1">GRDP3_1</td>
-                            <td class="">Day to day needs</td>
-                            <td>11/07/2020</td>
-                            <td>Solved</td>
-                            <td><a href="#" onClick={()=>this.routeChange('g_details')}>Click to View</a></td>
                           </tr>
-                        </tbody>
+                      )
+                  })
+                  }
+
+                  </tbody>
                     </table>
                 </div></div></div>
               </div>

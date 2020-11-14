@@ -17,6 +17,7 @@ class Login extends React.Component{
         .then(user => {
             if(user.person_id){
                 alert("Hello! "+user.person_name);
+                this.props.loadUser(user);
                 if(user.type == 'users'){
                     this.routeChange('dashboard');
                 }

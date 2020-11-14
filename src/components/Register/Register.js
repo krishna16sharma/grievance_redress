@@ -5,7 +5,7 @@ class Register extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
-    onSubmitSignIn = () =>{
+    onRegister = () =>{
         var numbers = /^[0-9]+$/;
         var ph = document.getElementById("ph_reg").value;
         var ph2 = document.getElementById("ph2_reg").value;
@@ -96,7 +96,7 @@ class Register extends React.Component{
                                                         <input type="text" placeholder="Enter Email Address" class="form-control" id="email_reg" required/>
                                                     </div>
                                                     <div class="d-flex justify-content-center">
-                                                        <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.onSubmitSignIn()}>Register</button>
+                                                        <button type="button" class="btn btn-primary btn-info py-1 my-2" onClick ={()=>this.onRegister()}>Register</button>
                                                     </div>
                                             </div>
                                         </form>

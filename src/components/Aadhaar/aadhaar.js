@@ -107,8 +107,8 @@ class Aadhaar extends React.Component{
                   </div>
                     <div className="form-group my-1">
                       <label for="a_address">Address</label>
-                      <textarea className="form-control" id="a_address" rows="3" placeholder="Enter your address" required></textarea>
-                      <small class="validation" id="add_error" style={{color:'red'}}>Please enter your address.</small>
+                      <textarea className="form-control" id="a_address" rows="3" placeholder="Door No, Street, Area, City, State" required></textarea>
+                      <small class="validation" id="add_error" style={{color:'red'}}>Please enter your address: Door No, Street, Area, City, State </small>
                     </div>
                   <button type="button" className="btn btn-primary my-1" onClick={()=>this.validate()}>Submit</button>
                 </form>
