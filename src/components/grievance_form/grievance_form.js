@@ -57,6 +57,7 @@ class Grievance extends React.Component{
                 console.log(data);
                 alert("Your Grievance has been submitted!")
                 this.routeChange('dashboard')
+                
                 //this.props.loadUser(user);
             }
             else{

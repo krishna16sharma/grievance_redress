@@ -51,7 +51,8 @@ const initialState = {
         person_ph_number: '',
         ph2:'',
         email: ''
-    }
+    },
+    grievance_id: ''
 }
 
 
@@ -63,6 +64,11 @@ class App extends React.Component{
     routeChange = (current) =>{
         this.setState({current: current})
         console.log(current)
+    }
+    loadGrievance = (data)=>{
+        this.setState(
+            {grievance_id: data}
+        )
     }
     loadUser =(data)=>{
         this.setState(
@@ -81,7 +87,7 @@ class App extends React.Component{
         console.log("Loaded", this.state.user)
     }
   render(){
-      const {current,logged,user} = this.state;
+      const {current,logged,user, grievance_id} = this.state;
       return (
           <div>
           <Particles className='particles'
@@ -113,7 +119,7 @@ class App extends React.Component{
                             :
                             (current === 'adm_login')
                                 ?
-                                    <Adm_Dashboard routeChange={this.routeChange}/>
+                                    <Adm_Dashboard routeChange={this.routeChange} loadGrievance={this.loadGrievance} user={user}/>
                                 :
                                 (current === 'grievance_form')
                                     ?
@@ -121,7 +127,7 @@ class App extends React.Component{
                                     :
                                     (current === 'g_details')
                                         ?
-                                        <G_details routeChange={this.routeChange}/>
+                                        <G_details routeChange={this.routeChange} user={user} grievance_id={grievance_id}/>
                                         :
                                     (current === 'webtraffic')
                                         ?
@@ -129,21 +135,21 @@ class App extends React.Component{
                                         :
                                         (current === 'dashboard')
                                             ?
-                                            <Dashboard routeChange={this.routeChange} user={user}/>
+                                            <Dashboard routeChange={this.routeChange} user={user} loadGrievance={this.loadGrievance}/>
                                             :
                                             (current === 'g_details1')
                                                 ?
-                                                <G_details1 routeChange={this.routeChange}/>
+                                                <G_details1 routeChange={this.routeChange} grievance_id={grievance_id}/>
                                                 :
                                                 (current === 'g_details2')
                                                     ?
-                                                    <G_details2 routeChange={this.routeChange}/>
+                                                    <G_details2 routeChange={this.routeChange} grievance_id={grievance_id}/>
                                                     :
                                                     (current === 'response')
                                                         ?
-                                                        <Response routeChange={this.routeChange}/>
+                                                        <Response routeChange={this.routeChange} grievance_id={grievance_id}/>
                                                         :
-                                                        <Dept_user routeChange={this.routeChange}/>
+                                                        <Dept_user routeChange={this.routeChange} user={user} loadGrievance={this.loadGrievance}/>
 
             }
             </div>

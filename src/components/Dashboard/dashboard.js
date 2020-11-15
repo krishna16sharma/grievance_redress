@@ -10,7 +10,10 @@ class Dashboard extends React.Component{
     routeChange = ( route ) =>{
         this.props.routeChange(route);
     }
-
+    viewDetails = (g_id)=>{
+        this.props.loadGrievance(g_id);
+        this.props.routeChange('g_details');
+    }
     componentDidMount(){
         fetch('http://localhost:3000/dashboard',{
             method: 'post',
@@ -37,7 +40,6 @@ class Dashboard extends React.Component{
                 else if( curr_item.status == 'solved'){
                     solved+=1
                 }
-                //t_body.innerHTML+=`<tr role="row" class="odd"><td class="sorting_1">${curr_item.grievance_id}</td><td class="">${curr_item.grievance_type}</td><td>${curr_item.day}/${curr_item.month}/${curr_item.year}</td><td>${curr_item.status}</td><td><a href="#" onClick={()=&gtthis.routeChange('g_details')}>Click to View</a></td></tr>`
             }
             document.getElementById('g_submitted').innerHTML = data.length;
             document.getElementById('g_pending').innerHTML = pending;
@@ -122,7 +124,7 @@ class Dashboard extends React.Component{
                           <td>{data.grievance_type}</td>
                           <td>{data.day}/{data.month}/{data.year}</td>
                           <td>{data.status}</td>
-                          <td><a href="#" onClick={()=>this.routeChange('g_details')}>Click to View</a></td>
+                          <td><a href="#" onClick={()=>this.viewDetails(data.grievance_id)}>Click to View</a></td>
                           </tr>
                       )
                   })

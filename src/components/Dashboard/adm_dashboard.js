@@ -1,8 +1,48 @@
 import React , {Component} from 'react';
 
 class Adm_Dashboard extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            entries: []
+        }
+    }
     routeChange = ( route ) =>{
         this.props.routeChange(route);
+    }
+    viewDetails = (g_id)=>{
+        this.props.loadGrievance(g_id);
+        this.props.routeChange('g_details2');
+    }
+    componentDidMount(){
+        fetch('http://localhost:3000/adm_dashboard',{
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                user: this.props.user
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            var pending = 0;
+            var solved = 0;
+            for(var item in data){
+                var curr_item = data[item];
+                if(curr_item.status == 'pending'){
+                    pending+=1
+                }
+                else if( curr_item.status == 'solved'){
+                    solved+=1
+                }
+            }
+            //document.getElementById('g_submitted').innerHTML = data.length;
+            document.getElementById('g_pending').innerHTML = pending;
+            document.getElementById('g_solved').innerHTML = solved;
+            console.log(pending,solved, data.length);
+            console.log(data)
+            this.setState({entries: data})
+        })
     }
     render(){
         return(
@@ -21,7 +61,7 @@ class Adm_Dashboard extends React.Component{
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Grievance Solved</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="g_solved">0</div>
                     </div>
                   </div>
                 </div>
@@ -34,7 +74,7 @@ class Adm_Dashboard extends React.Component{
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Grievance Pending</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="g_pending">0</div>
                     </div>
                   </div>
                 </div>
@@ -58,21 +98,19 @@ class Adm_Dashboard extends React.Component{
                     <tr><th rowspan="1" colspan="1">ID</th><th rowspan="1" colspan="1">User ID</th><th rowspan="1" colspan="1">Date</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">View</th></tr>
                   </tfoot>
                   <tbody>
-
-                  <tr role="row" class="odd">
-                          <td class="sorting_1">GRDP3_1</td>
-                          <td class="">US02</td>
-                          <td>11/07/2020</td>
-                          <td>Solved</td>
-                          <td><a href="#" onClick={()=>this.routeChange('g_details2')}>Click to View</a></td>
-                        </tr><tr role="row" class="even">
-                            <td class="sorting_1">GRDP2_1</td>
-                            <td class="">US02</td>
-                            <td>12/04/2020</td>
-                            <td>Pending</td>
-                            <td><a href="#" onClick={()=>this.routeChange('g_details2')}>Click to View</a></td>
+                  {this.state.entries.map((data, key)=>{
+                      return(
+                          <tr key={key}>
+                          <td>{data.grievance_id}</td>
+                          <td>{data.grievance_type}</td>
+                          <td>{data.day}/{data.month}/{data.year}</td>
+                          <td>{data.status}</td>
+                          <td><a href="#" onClick={()=>this.viewDetails(data.grievance_id)}>Click to View</a></td>
                           </tr>
-                        </tbody>
+                      )
+                  })
+                  }
+                   </tbody>
                     </table>
                 </div></div></div>
               </div>
