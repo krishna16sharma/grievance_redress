@@ -36,10 +36,9 @@ class Adm_Dashboard extends React.Component{
                     solved+=1
                 }
             }
-            //document.getElementById('g_submitted').innerHTML = data.length;
             document.getElementById('g_pending').innerHTML = pending;
             document.getElementById('g_solved').innerHTML = solved;
-            console.log(pending,solved, data.length);
+            //console.log(pending,solved, data.length);
             console.log(data)
             this.setState({entries: data})
         })

@@ -24,10 +24,6 @@ class Dashboard extends React.Component{
         })
         .then(response => response.json())
         .then(data => {
-            //console.log(data);
-            //var t_body = document.getElementById('table_body');
-            //var content = t_body.innerHTML;
-            //console.log(content);
             var pending = 0;
             var submitted = 0;
             var solved = 0;

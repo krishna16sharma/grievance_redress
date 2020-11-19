@@ -41,7 +41,7 @@ const particlesOptions = {
 
 
 const initialState = {
-    current: 'login',
+    current: 'home',
     logged: 1,
     user: {
         person_id: '',
