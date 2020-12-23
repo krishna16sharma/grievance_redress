@@ -36,7 +36,7 @@ class Login extends React.Component{
         })
 
     }
-    validate =()=>{
+    /*validate =()=>{
         var uname =  document.getElementById("username").value;
         var pwd =  document.getElementById("password").value;
         console.log(pwd.trim())
@@ -53,7 +53,7 @@ class Login extends React.Component{
         else{
             this.routeChange('dashboard')
         }
-    }
+    }*/
     render(){
         return(
                     <div className="container" style={{marginTop:'20vh'}}>

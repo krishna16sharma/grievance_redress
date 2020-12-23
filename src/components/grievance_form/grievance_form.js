@@ -44,20 +44,10 @@ class Grievance extends React.Component{
         .then(response => response.json())
         .then(data => {
             if(data.grievance_id){
-                /*alert("Hello! "+user.person_name);
-                if(user.type == 'users'){
-                    this.routeChange('dashboard');
-                }
-                else if (user.type == 'department') {
-                    this.routeChange('dept_user')
-                }
-                else if(user.type == 'admin'){
-                    this.routeChange('adm_login')
-                }*/
                 console.log(data);
                 alert("Your Grievance has been submitted!")
                 this.routeChange('dashboard')
-                
+
                 //this.props.loadUser(user);
             }
             else{
